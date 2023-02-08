@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// App.tsx
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import { RootState } from './store/store'
 
-function App() {
+const App: React.FC = () => {
+  const theme = useSelector((state: RootState) => state.theme)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div>
+        <Navbar />
+      </div>
+      <div style={{ backgroundColor: theme === 'light' ? 'white' : 'black', height: '100vh', color: theme === 'light' ? 'black' : 'white', textAlign: 'center', paddingTop: '50px' }}>
+        <Home />
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
